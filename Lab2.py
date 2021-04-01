@@ -23,8 +23,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 CONTENT_IMG_PATH = "./pics/boldir_g.png"  # TODO: Add this.
 STYLE_IMG_PATH = "./pics/KDAmoreB.png"  # TODO: Add this.
-
-
 CONTENT_IMG_H = 500
 CONTENT_IMG_W = 500
 
@@ -35,7 +33,7 @@ CONTENT_WEIGHT = 0.0001
 STYLE_WEIGHT = 2.9999
 TOTAL_WEIGHT = 0.005
 
-TRANSFER_ROUNDS = 5
+TRANSFER_ROUNDS = 3
 
 
 # =============================<Helper Fuctions>=================================
@@ -187,9 +185,9 @@ def styleTransfer(cData, sData, tData):
     else:
         out.append(gradients)
 
-    o = K.function([genTensor], out)
+    func = K.function([genTensor], out)
     r_data = tData
-    eval_obj = eval(o)
+    eval_obj = eval(func)
 
     print("   Beginning transfer.")
     for i in range(TRANSFER_ROUNDS):
