@@ -1,4 +1,5 @@
 import os
+import sys
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
@@ -21,19 +22,19 @@ tf.compat.v1.disable_eager_execution()
 # tf.logging.set_verbosity(tf.logging.ERROR)   # Uncomment for TF1.
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-CONTENT_IMG_PATH = "./pics/boldir_g.png"  # TODO: Add this.
-STYLE_IMG_PATH = "./pics/KDAmoreB.png"  # TODO: Add this.
+CONTENT_IMG_PATH = sys.argv[1]
+STYLE_IMG_PATH = sys.argv[2]
 CONTENT_IMG_H = 500
 CONTENT_IMG_W = 500
 
 STYLE_IMG_H = 500
 STYLE_IMG_W = 500
 
-CONTENT_WEIGHT = 0.0001
-STYLE_WEIGHT = 2.9999
-TOTAL_WEIGHT = 0.005
+CONTENT_WEIGHT = 0.025
+STYLE_WEIGHT = 1.0
+TOTAL_WEIGHT = 8.5e-5
 
-TRANSFER_ROUNDS = 3
+TRANSFER_ROUNDS = 20
 
 
 # =============================<Helper Fuctions>=================================
